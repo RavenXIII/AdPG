@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <script>
+
+function init(){
+type("Play");
+}
+
  var src = "myrecording.mp3";
     var mediaRec = new Media(src,
         // success callback
@@ -17,8 +22,9 @@
 
 // Play audio
 //
-function playAudio(url) {
+function playAudio() {
     // Play audio
+	text("Play");
     mediaRec.play();
 }
 
@@ -27,20 +33,30 @@ function playAudio(url) {
 function recordAudio() {
    
     // Record audio
+	text("Record");
     mediaRec.startRecord();
 
     // Stop recording after 10 seconds
     setTimeout(function() {
+		text("Stop");
         mediaRec.stopRecord();
     }, 10000);
 }
 
+function type(msg){
+console.log(msg);
+ document.getElementById('text').innerHTML = document.getElementById('text').innerHTML +msg;
+
+}
+
 </script>
 
-<body>
+<body onLoad="init()">
 
-<button type="button" onClick="">Record</button>
-<button type="button" onClick="">Play</button>
+<button type="button" onClick="recordAudio()">Record</button>
+<button type="button" onClick="playAudio()">Play</button>
+
+<div id="text" >TEXT:<br /></div>
 
 </body>
 </html>
