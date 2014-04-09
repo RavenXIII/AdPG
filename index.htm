@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<script>
+ var src = "myrecording.mp3";
+    var mediaRec = new Media(src,
+        // success callback
+        function() {
+            console.log("recordAudio():Audio Success");
+        },
+
+        // error callback
+        function(err) {
+            console.log("recordAudio():Audio Error: "+ err.code);
+        }
+    );
+
+
+// Play audio
+//
+function playAudio(url) {
+    // Play audio
+    mediaRec.play();
+}
+
+// Record audio
+//
+function recordAudio() {
+   
+    // Record audio
+    mediaRec.startRecord();
+
+    // Stop recording after 10 seconds
+    setTimeout(function() {
+        mediaRec.stopRecord();
+    }, 10000);
+}
+
+</script>
+
+<body>
+
+<button type="button" onClick="">Record</button>
+<button type="button" onClick="">Play</button>
+
+</body>
+</html>
